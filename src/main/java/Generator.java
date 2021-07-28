@@ -18,6 +18,9 @@ import java.util.Map;
  * <p>
  * 生成代码
  * </p>
+ *
+ * @author 叶关伟
+ * @since 2021-07-28
  */
 public class Generator {
 
@@ -26,11 +29,11 @@ public class Generator {
     // 数据库驱动
     public static String dbDriverName = "org.postgresql.Driver";
     // 数据库地址
-    public static String dbUrl = "";
+    public static String dbUrl = "jdbc:postgresql://localhost:5432/contract_db";
     // 数据库名称
-    public static String dbUserName = "";
+    public static String dbUserName = "postgres";
     // 数据库密码
-    public static String dbPassword = "";
+    public static String dbPassword = "123456";
     // 输出文件夹
     public static String outputDir = "./demo";
     // 实体类的作者
