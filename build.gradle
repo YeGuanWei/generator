@@ -28,8 +28,9 @@ allprojects {
         implementation 'com.baomidou:mybatis-plus-boot-starter:3.1.0'
         implementation 'com.baomidou:mybatis-plus-generator:3.1.0'
 
-        implementation 'mysql:mysql-connector-java:8.0.13'
-
         implementation 'org.apache.velocity:velocity-engine-core:2.0'
+
+        implementation 'mysql:mysql-connector-java:8.0.13'
+        implementation 'org.postgresql:postgresql:42.2.19'
     }
 }

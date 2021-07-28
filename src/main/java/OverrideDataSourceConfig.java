@@ -18,6 +18,9 @@ public class OverrideDataSourceConfig extends DataSourceConfig {
                 case MYSQL:
                     tc = new OverrideMySqlTypeConvert();
                     break;
+                case POSTGRE_SQL:
+                    tc = new OverridePGSQLTypeConvert();
+                    break;
                 default:
                     break;
             }

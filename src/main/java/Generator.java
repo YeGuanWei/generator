@@ -21,20 +21,22 @@ import java.util.Map;
  */
 public class Generator {
 
+    // 数据库类型
+    public static DbType dbType = DbType.POSTGRE_SQL;
     // 数据库驱动
-    public static String dbDriverName = "com.mysql.cj.jdbc.Driver";
+    public static String dbDriverName = "org.postgresql.Driver";
     // 数据库地址
-    public static String dbUrl = "jdbc:mysql://localhost:3306/share_forum?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&nullCatalogMeansCurrent=true";
+    public static String dbUrl = "";
     // 数据库名称
-    public static String dbUserName = "root";
+    public static String dbUserName = "";
     // 数据库密码
-    public static String dbPassword = "root";
+    public static String dbPassword = "";
     // 输出文件夹
     public static String outputDir = "./demo";
     // 实体类的作者
     public static String author = "demo";
     // 数据库中实体类的表头(定义之后会自动去掉这些表头)
-    String tablePrefix[] = {"sys_"};
+    String tablePrefix[] = {"sys_","contract_"};
 
 
     public static void main(String[] args) {
@@ -56,7 +58,7 @@ public class Generator {
             {
                 put("", new HashMap<String, String[]>() {{
                     put("", new String[] {
-                        "sys_user",
+                        "contract_approval",
                     });
                 }});
             }
@@ -91,7 +93,7 @@ public class Generator {
         }
 
         DataSourceConfig dataSourceConfig = new OverrideDataSourceConfig();
-        dataSourceConfig.setDbType(DbType.MYSQL)
+        dataSourceConfig.setDbType(dbType)
                 .setUrl(dbUrl)
                 .setUsername(dbUserName)
                 .setPassword(dbPassword)
