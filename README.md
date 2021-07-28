@@ -1,0 +1,3 @@
+MyBatis-Plus自动生成实体类项目
+
+目前只支持MySQL数据库的生成
