@@ -29,17 +29,17 @@ public class Generator {
     // 数据库驱动
     public static String dbDriverName = "org.postgresql.Driver";
     // 数据库地址
-    public static String dbUrl = "jdbc:postgresql://localhost:5432/contract_db";
+    public static String dbUrl = "";
     // 数据库名称
-    public static String dbUserName = "postgres";
+    public static String dbUserName = "";
     // 数据库密码
-    public static String dbPassword = "123456";
+    public static String dbPassword = "";
     // 输出文件夹
     public static String outputDir = "./demo";
     // 实体类的作者
     public static String author = "demo";
     // 数据库中实体类的表头(定义之后会自动去掉这些表头)
-    String tablePrefix[] = {"sys_","contract_"};
+    String tablePrefix[] = {"sys_",""};
 
 
     public static void main(String[] args) {
