@@ -1,4 +1,3 @@
-import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
@@ -7,9 +6,7 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,23 +21,52 @@ import java.util.Map;
  */
 public class Generator {
 
-    // 数据库类型
-    public static DbType dbType = DbType.POSTGRE_SQL;
-    // 数据库驱动
-    public static String dbDriverName = "org.postgresql.Driver";
-    // 数据库地址
-    public static String dbUrl = "";
-    // 数据库名称
-    public static String dbUserName = "";
-    // 数据库密码
-    public static String dbPassword = "";
-    // 输出文件夹
-    public static String outputDir = "./demo";
-    // 实体类的作者
-    public static String author = "demo";
-    // 数据库中实体类的表头(定义之后会自动去掉这些表头)
-    String tablePrefix[] = {"sys_",""};
+    /**
+     * 数据库类型
+     */
+    public static DbTypeEnum dbType = DbTypeEnum.MYSQL;
 
+    /**
+     * 数据库地址
+     */
+    public static String dbUrl = "jdbc:mysql://localhost:3306/share_forum?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&nullCatalogMeansCurrent=true";
+
+    /**
+     * 数据库名称
+     */
+    public static String dbUserName = "root";
+
+    /**
+     * 数据库密码
+     */
+    public static String dbPassword = "root";
+
+    /**
+     * 项目包名
+     */
+    public static String packageName = "cn.demo";
+
+    /**
+     * 输出文件夹
+     */
+    public static String outputDir = "./demo";
+
+    /**
+     * 实体类的作者
+     */
+    public static String author = "叶关伟";
+
+    /**
+     * 重设Service名称
+     * 当为false时: user -> UserService,
+     * 当为true时: user -> IUserService
+     */
+    public static boolean serviceNameStartWithI = true;
+
+    /**
+     * 数据库中实体类的表头(定义之后会自动去掉这些表头)
+     */
+    String[] tablePrefix = {"sys_", "contract_"};
 
     public static void main(String[] args) {
         Generator gen = new Generator();
@@ -48,26 +74,19 @@ public class Generator {
     }
 
     public void generateCode() {
-        // 项目包名
-        String packageName = "cn.demo";
-
-        // 重设Service名称
-        // 当为false时: user -> UserService,
-        // 当为true时: user -> IUserService
-        boolean serviceNameStartWithI = true;
 
         //模块 - 功能组划分 - 表列表
         Map<String, Map<String, String[]>> tables = new HashMap<String, Map<String, String[]>>() {
             {
                 put("", new HashMap<String, String[]>() {{
-                    put("", new String[] {
-                        "contract_approval",
+                    put("", new String[]{
+                            "sys_user",
                     });
                 }});
             }
         };
 
-        for (String key: tables.keySet()) {
+        for (String key : tables.keySet()) {
             Map<String, String[]> module = tables.get(key);
 
             for (String group : module.keySet()) {
@@ -96,19 +115,19 @@ public class Generator {
         }
 
         DataSourceConfig dataSourceConfig = new OverrideDataSourceConfig();
-        dataSourceConfig.setDbType(dbType)
+        dataSourceConfig.setDbType(dbType.getDb())
                 .setUrl(dbUrl)
                 .setUsername(dbUserName)
                 .setPassword(dbPassword)
-                .setDriverName(dbDriverName);
+                .setDriverName(dbType.getDbDriver());
 
         StrategyConfig strategyConfig = new StrategyConfig();
         strategyConfig
                 .setTablePrefix(tablePrefix)
                 .setCapitalMode(true)
                 .setEntityLombokModel(true)
-                .setEntityBuilderModel(isDto ? false : true)
-                .setEntityColumnConstant(isDto ? false : true)
+                .setEntityBuilderModel(!isDto)
+                .setEntityColumnConstant(!isDto)
                 .setRestControllerStyle(true)
                 .entityTableFieldAnnotationEnable(false)
                 .setNaming(NamingStrategy.underline_to_camel)
