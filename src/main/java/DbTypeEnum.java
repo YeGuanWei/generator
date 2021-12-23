@@ -7,7 +7,11 @@ public enum DbTypeEnum {
 
     MYSQL(DbType.MYSQL, "com.mysql.cj.jdbc.Driver"),
 
-    POSTGRE_SQL(DbType.POSTGRE_SQL, "org.postgresql.Driver");
+    POSTGRE_SQL(DbType.POSTGRE_SQL, "org.postgresql.Driver"),
+
+    ORACLE(DbType.ORACLE, ""),
+
+    ;
 
     private final DbType db;
     private final String dbDriver;
